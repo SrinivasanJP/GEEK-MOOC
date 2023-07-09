@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GEEKMOOC"
+        tools:targetApi="31">
+        <activity
+            android:name=".CourseTakingPage"
+            android:exported="false" />
+        <activity
+            android:name=".GettingNewLectureDetials"
+            android:exported="false" />
+        <activity
+            android:name=".LectureUpload"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterCourse"
+            android:exported="false" />
+        <activity
+            android:name=".GettingCourseDetials"
+            android:exported="false" />
+        <activity
+            android:name=".Basic_Info"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
+            android:exported="false" />
+        <activity
+            android:name=".ForgetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

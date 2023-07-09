@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "891574628420",
+    "project_id": "geekmooc-fe677",
+    "storage_bucket": "geekmooc-fe677.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891574628420:android:c4849f6a81aa945fc3cc11",
+        "android_client_info": {
+          "package_name": "com.example.geek_mooc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891574628420-7n1giarqnn7t8gs2q38u0tv9bchspd5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh1XBw6qars8EHHP9diDrxVsAG96dry1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891574628420-7n1giarqnn7t8gs2q38u0tv9bchspd5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

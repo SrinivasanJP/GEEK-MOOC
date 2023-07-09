@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LectureUpload"
+    android:background="@color/background_dark">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Courese Title placeholder"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:id="@+id/title"/>
+    <RelativeLayout
+        android:id="@+id/newLecture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/title"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/curve_box_dark"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/baseline_add_24" />
+
+        <TextView
+            android:id="@+id/clickme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plus"
+            android:layout_centerHorizontal="true"
+            android:text="Click Here to Upload new Lecture"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of Uploaded Lectures"
+        android:layout_below="@+id/newLecture"
+        android:id="@+id/labelLectures"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lectureList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/labelLectures"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout>

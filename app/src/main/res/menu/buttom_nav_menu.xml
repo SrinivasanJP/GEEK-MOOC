@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/home"
+    android:icon="@drawable/baseline_home_24"
+    android:title="Home"/>
+    <item
+        android:id="@+id/regCourse"
+        android:icon="@drawable/baseline_menu_book_24"
+        android:title="Registred"/>
+    <item
+        android:id="@+id/createCourse"
+        android:icon="@drawable/baseline_add_24"
+        android:title="Create"/>
+    <item
+        android:id="@+id/manageCourse"
+        android:icon="@drawable/baseline_playlist_add_check_24"
+        android:title="Manage"/>
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Setting"/>
+
+
+</menu>

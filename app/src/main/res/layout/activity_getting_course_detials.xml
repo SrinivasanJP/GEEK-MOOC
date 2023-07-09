@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GettingCourseDetials"
+    android:background="#0f111a">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Course"
+        android:id="@+id/activityLable"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Course Title:"
+        android:id="@+id/titleLable"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/activityLable"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/titleInputContainer"
+        app:boxBackgroundMode="filled"
+        app:hintTextColor="@color/black"
+        app:boxStrokeColor="#00000000"
+        android:layout_below="@+id/titleLable"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_box"
+            android:hint="Enter Course Title"
+            android:id="@+id/titleInput"
+            android:textColor="@color/black"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Course Description:"
+        android:id="@+id/descriptionLable"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/titleInputContainer"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:boxBackgroundMode="filled"
+        app:hintTextColor="@color/black"
+        android:id="@+id/descriptionContainer"
+        app:boxStrokeColor="#00000000"
+        android:layout_below="@+id/descriptionLable"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/curve_box"
+            android:textColor="@color/black"
+            android:inputType="textMultiLine"
+            android:id="@+id/descriptionInput"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Course Language:"
+        android:id="@+id/languageLable"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/descriptionContainer"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:boxBackgroundMode="filled"
+        android:id="@+id/languageContainer"
+        app:hintTextColor="@color/black"
+        app:boxStrokeColor="#00000000"
+        android:layout_below="@+id/languageLable"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_box"
+            android:hint="Enter Course Language"
+            android:id="@+id/languageInput"
+            android:textColor="@color/black"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <RelativeLayout
+        android:id="@+id/addVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/curve_box_dark"
+        android:layout_below="@+id/languageContainer"
+        android:padding="20dp">
+
+        <ImageView
+            android:id="@+id/plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="20dp"
+            android:src="@drawable/baseline_add_24" />
+
+        <TextView
+            android:id="@+id/clickme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plus"
+            android:layout_centerHorizontal="true"
+            android:text="Click Here to upload Video"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="2dp"
+        android:id="@+id/progressUpload"
+        android:layout_below="@+id/addVideo"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSubmit"
+        android:background="@drawable/curve_box"
+        android:layout_below="@+id/progressUpload"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        >
+        <ProgressBar
+            android:id="@+id/ProgressbarBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Create course"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textColor="@color/purple_500"
+            android:textStyle="bold"
+            android:id="@+id/BtnText"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

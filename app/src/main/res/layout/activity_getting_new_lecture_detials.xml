@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GettingNewLectureDetials"
+    android:background="@color/background_dark">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New Lecture"
+        android:id="@+id/activityLable"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="22sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Lecture Title:"
+        android:id="@+id/titleLable"
+        android:textColor="@color/white"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:layout_below="@+id/activityLable"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/titleInputContainer"
+        app:boxBackgroundMode="filled"
+        app:hintTextColor="@color/black"
+        app:boxStrokeColor="#00000000"
+        android:layout_below="@+id/titleLable"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_box"
+            android:hint="Enter Lecture Title"
+            android:id="@+id/titleInput"
+            android:textColor="@color/black"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/uploadsContainer"
+        android:layout_below="@+id/titleInputContainer"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/addVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/curve_box_dark"
+            android:layout_below="@+id/titleInputContainer">
+
+            <ImageView
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/baseline_add_24" />
+
+            <TextView
+                android:id="@+id/clickme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/plus"
+                android:layout_marginVertical="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="Click Here to upload Video"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/addNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="2"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/curve_box_dark"
+            android:layout_below="@+id/addVideo">
+
+            <ImageView
+                android:id="@+id/plusNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:src="@drawable/baseline_add_24" />
+
+            <TextView
+                android:id="@+id/clickmeNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_below="@+id/plusNotes"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:layout_marginVertical="10dp"
+                android:text="Upload Lecture Notes"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/uploadsContainer"
+    android:id="@+id/checkContainer"
+    android:orientation="horizontal">
+    <CheckBox
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:id="@+id/finalCheck" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is this a Final Lecture?"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:labelFor="@+id/finalCheck"/>
+</LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSubmit"
+        android:background="@drawable/curve_box"
+        android:layout_below="@+id/checkContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        >
+        <ProgressBar
+            android:id="@+id/ProgressbarBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Add Lecture"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textColor="@color/purple_500"
+            android:textStyle="bold"
+            android:id="@+id/BtnText"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

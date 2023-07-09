@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterCourse"
+    android:background="#0f111a"
+    android:padding="5dp">
+    <androidx.media3.ui.PlayerView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/previewPlayer"
+        app:resize_mode="fill"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/previewPlayer"
+        android:id="@+id/courseDetials"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="PlaceHolder for title of the course"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:text="Description placeHolder"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:id="@+id/description"
+                android:layout_margin="2dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="rating : 5.0"
+                android:layout_below="@+id/description"
+                android:textColor="@color/white"
+                android:layout_margin="2dp"
+                android:id="@+id/rating"
+                android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/rating"
+                android:layout_below="@+id/description"
+                android:textColor="@color/white"
+                android:text="(noOfratings)"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:id="@+id/noOfRatings"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/noOfRatings"
+                android:layout_below="@+id/description"
+                android:textColor="@color/white"
+                android:text="1010101 Students"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="2dp"
+                android:id="@+id/noOfStudents"
+                />
+
+            <TextView
+                android:id="@+id/createdBy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rating"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="Created by Dr. Srinivasan J P"
+                android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/createdBy"
+                android:drawableStart="@drawable/baseline_info_24"
+                android:gravity="center_vertical"
+                android:layout_marginStart="2dp"
+                android:text="Last Updated dd/mm/yyyy"
+                android:layout_marginTop="20dp"
+                android:id="@+id/updated"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/updated"
+                android:drawableStart="@drawable/baseline_language_24"
+                android:gravity="center_vertical"
+                android:layout_marginStart="2dp"
+                android:text="Tamil"
+                android:id="@+id/lang"
+                android:textColor="@color/white"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/lang"
+                android:id="@+id/commentContainer"
+                android:layout_margin="2dp">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dark_back"
+        android:id="@+id/btnContainer">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/watchListContainer"
+            android:layout_margin="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/curver_outline"
+            >
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Watchlist"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/purple_500"
+                android:textStyle="bold"
+                android:id="@+id/BtnWatchListText"/>
+
+            <ProgressBar
+                android:id="@+id/Progressbarwatchlist"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:visibility="invisible" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/registerContainer"
+            android:layout_margin="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/curve_box"
+            >
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textSize="15sp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/purple_500"
+                android:textStyle="bold"
+                android:id="@+id/BtnRegister"/>
+
+            <ProgressBar
+                android:id="@+id/ProgressbarRegister"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

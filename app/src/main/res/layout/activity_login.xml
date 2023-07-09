@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:background="@color/background_dark">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"
+        android:textColor="@color/text_white"
+        android:id="@+id/appintro"
+        android:layout_marginTop="80dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/greetings"
+        android:text="@string/greetings_login"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/appintro"
+        android:textSize="32sp"
+        android:textColor="@color/text_white"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/unContainer"
+        android:layout_below="@+id/greetings"
+        android:layout_marginTop="80dp"
+        app:boxBackgroundMode="filled"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:boxStrokeColor="#00000000"
+        app:hintTextColor="@color/black"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:hint="Enter User name"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/curve_box"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/passContainer"
+        android:layout_below="@+id/unContainer"
+        android:layout_marginTop="50dp"
+        app:boxBackgroundMode="filled"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:passwordToggleEnabled="true"
+        app:boxStrokeColor="#00000000"
+        app:hintTextColor="@color/black"
+
+        >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:background="@drawable/curve_box"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/buttonContainer"
+        android:layout_below="@+id/passContainer"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textColor="@color/text_white_glow"
+            android:textAllCaps="true"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:id="@+id/mvRegister"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forget Password?"
+            android:textColor="@color/text_white_glow"
+            android:textAllCaps="true"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:id="@+id/mvForgetPassword"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginContainer"
+        android:layout_below="@+id/buttonContainer"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/curve_box"
+        >
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="LOG IN"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:textColor="@color/purple_500"
+            android:textStyle="bold"
+            android:id="@+id/BtnLoginText"/>
+
+        <ProgressBar
+            android:id="@+id/ProgressbarLogin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</RelativeLayout>
