@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/title"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/curve_box_dark"
         android:padding="20dp">
 
@@ -46,23 +46,78 @@
             android:text="Click Here to Upload new Lecture"
             android:textColor="@color/white" />
     </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="List of Uploaded Lectures"
-        android:layout_below="@+id/newLecture"
-        android:id="@+id/labelLectures"
-        android:layout_marginStart="10dp"
-        android:textColor="@color/white"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lectureList"
+    <RelativeLayout
+        android:id="@+id/createQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/labelLectures"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/newLecture"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/curve_box_dark"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/quizplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/baseline_auto_awesome_24" />
+
+        <TextView
+            android:id="@+id/quizclickme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quizplus"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Click Here to Create a Quiz"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/createQuiz">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List of Uploaded Lectures"
+                android:id="@+id/labelLectures"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lectureList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelLectures"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List of Created Quiz"
+                android:layout_below="@+id/lectureList"
+                android:id="@+id/labelQuiz"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/quizList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelQuiz"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ModifyCourse"
+    android:background="@color/background_dark">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Courese Detials"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:id="@+id/actionBar"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Basic Course Detials"
+                android:layout_below="@+id/actionBar"
+                android:textColor="@color/text_white"
+                android:layout_marginTop="30dp"
+                android:id="@+id/labelbasicDetials"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:text="Title Place Holder"
+                android:layout_below="@+id/labelbasicDetials"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:text="Description Place Holder"
+                android:layout_below="@+id/title"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/key"
+                android:text="Course Key Place Holder"
+                android:layout_below="@+id/description"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/language"
+                android:text="Language Place Holder"
+                android:layout_below="@+id/key"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lastUpdate"
+                android:text="Last Update Place Holder"
+                android:layout_below="@+id/language"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratings"
+                android:text="Ratings Place Holder"
+                android:layout_below="@+id/lastUpdate"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/registers"
+                android:text="Registers Place Holder"
+                android:layout_below="@+id/ratings"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/noOfLectures"
+                android:text="Lecture count Place Holder"
+                android:layout_below="@+id/registers"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registered User Detials"
+                android:layout_below="@+id/noOfLectures"
+                android:textColor="@color/text_white"
+                android:layout_marginTop="30dp"
+                android:id="@+id/labelUserDetials"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_user"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/labelUserDetials"
+                 />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Lecture Detials"
+                android:layout_below="@+id/recycler_user"
+                android:textColor="@color/text_white"
+                android:layout_marginTop="30dp"
+                android:id="@+id/labelLecturesDetials"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_lectures"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/labelLecturesDetials"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modify Course Detials"
+                android:textColor="#FFC107"
+                android:id="@+id/modifyCourse"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_below="@+id/recycler_lectures"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete this Course"
+                android:id="@+id/deleteCourse"
+                android:textColor="@color/red"
+                android:layout_below="@+id/modifyCourse"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:textSize="18sp"
+                android:layout_marginBottom="80dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

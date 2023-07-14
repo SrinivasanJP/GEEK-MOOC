@@ -13,6 +13,21 @@
         android:theme="@style/Theme.GEEKMOOC"
         tools:targetApi="31">
         <activity
+            android:name=".ShowQuizMarks"
+            android:exported="false" />
+        <activity
+            android:name="Quiz.QuizStart"
+            android:exported="false" />
+        <activity
+            android:name="Quiz.QuizCreate"
+            android:exported="false" />
+        <activity
+            android:name=".ModifyCourse"
+            android:exported="false" />
+        <activity
+            android:name=".LectureModify"
+            android:exported="false" />
+        <activity
             android:name=".CourseTakingPage"
             android:exported="false" />
         <activity

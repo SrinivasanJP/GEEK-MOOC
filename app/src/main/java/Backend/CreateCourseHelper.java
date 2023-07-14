@@ -5,13 +5,13 @@ package Backend;
 import java.util.ArrayList;
 
 public class CreateCourseHelper {
-    String Title, description, basket, thumbnail, language, introlink, key, author, lastUpdate;
+    String Title, description, basket, thumbnail, language, introlink, key, author, lastUpdate,Cpath;
 
     int ratings, registrations, noOfRatings;
     public CreateCourseHelper(){}
 
-    public CreateCourseHelper(String title, String description, String basket, String thumbnail, String language, String introlink, String key, String author, String lastUpdate, int ratings, int registrations, int noOfRatings) {
-        this.Title = title;
+    public CreateCourseHelper(String title, String description, String basket, String thumbnail, String language, String introlink, String key, String author, String lastUpdate, String cpath, int ratings, int registrations, int noOfRatings) {
+        Title = title;
         this.description = description;
         this.basket = basket;
         this.thumbnail = thumbnail;
@@ -20,12 +20,11 @@ public class CreateCourseHelper {
         this.key = key;
         this.author = author;
         this.lastUpdate = lastUpdate;
+        Cpath = cpath;
         this.ratings = ratings;
         this.registrations = registrations;
         this.noOfRatings = noOfRatings;
     }
-
-
 
     public String getTitle() {
         return Title;
@@ -121,5 +120,13 @@ public class CreateCourseHelper {
 
     public void setNoOfRatings(int noOfRatings) {
         this.noOfRatings = noOfRatings;
+    }
+
+    public String getCpath() {
+        return Cpath;
+    }
+
+    public void setCpath(String cpath) {
+        Cpath = cpath;
     }
 }

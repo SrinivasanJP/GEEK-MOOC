@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GettingNewLectureDetials"
+    tools:context=".LectureModify"
     android:background="@color/background_dark">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create New Lecture"
+        android:text="Modify the course"
         android:id="@+id/activityLable"
         android:layout_marginStart="10dp"
         android:textColor="@color/white"
@@ -20,13 +20,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Key :"
+        android:id="@+id/courseKey"
+        android:textColor="@color/white"
+        android:layout_below="@+id/activityLable"
+        android:textSize="22sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Enter Lecture Title:"
         android:id="@+id/titleLable"
         android:textColor="@color/white"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:textSize="20sp"
-        android:layout_below="@+id/activityLable"/>
+        android:layout_below="@+id/courseKey"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,27 +131,27 @@
                 android:textColor="@color/white" />
         </RelativeLayout>
     </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/uploadsContainer"
-    android:id="@+id/checkContainer"
-    android:orientation="horizontal">
-    <CheckBox
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:id="@+id/finalCheck" />
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Is this a Final Lecture?"
-        android:layout_marginStart="20dp"
-        android:layout_gravity="center"
-        android:textSize="22sp"
-        android:textColor="@color/white"
-        android:labelFor="@+id/finalCheck"/>
-</LinearLayout>
+        android:layout_below="@+id/uploadsContainer"
+        android:id="@+id/checkContainer"
+        android:orientation="horizontal">
+        <CheckBox
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:id="@+id/finalCheck" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is this a Final Lecture?"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:textColor="@color/white"
+            android:labelFor="@+id/finalCheck"/>
+    </LinearLayout>
 
 
     <RelativeLayout
@@ -162,7 +172,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Add Lecture"
+            android:text="Modify Lecture"
             android:textSize="15sp"
             android:padding="10dp"
             android:gravity="center"
@@ -171,6 +181,16 @@
             android:id="@+id/BtnText"/>
 
     </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteLecture"
+        android:text="Delete This Lecture"
+        android:textColor="@color/red"
+        android:layout_below="@id/btnSubmit"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
 
 
 

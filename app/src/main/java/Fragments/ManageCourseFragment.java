@@ -1,5 +1,6 @@
 package Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -68,10 +69,12 @@ public class ManageCourseFragment extends Fragment implements RecyclerViewInterf
 
         recyclerView.setAdapter(courseHolderAdapter);
         reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot course : snapshot.getChildren()){
                     CreateCourseHelper c = course.getValue(CreateCourseHelper.class);
+                    c.setCpath(course.getRef().getPath().toString());
                     createCourseHelpers.add(c);
                 }
                 courseHolderAdapter.notifyDataSetChanged();
@@ -99,7 +102,13 @@ public class ManageCourseFragment extends Fragment implements RecyclerViewInterf
         intent.putExtra("ccNoofRatings",createCourseHelpers.get(position).getNoOfRatings());
         intent.putExtra("ccUpdate",createCourseHelpers.get(position).getLastUpdate());
         intent.putExtra("ccKey", createCourseHelpers.get(position).getKey());
+        intent.putExtra("ccPath",createCourseHelpers.get(position).getCpath());
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onClickNotesBtn(int position) {
 
     }
 }

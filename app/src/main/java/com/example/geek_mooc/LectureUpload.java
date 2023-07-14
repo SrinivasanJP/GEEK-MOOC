@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,16 +24,25 @@ import java.util.ArrayList;
 
 import Backend.CreateCourseHelper;
 import Backend.LectureHelper;
+import Quiz.QuizCreate;
+import Quiz.QuizDeleteAdapter;
+import Quiz.QuizHelper;
+import Quiz.RecyclerViewQuizDeleteInterface;
 import RecyclerHelper.CourseHolder;
+import RecyclerHelper.ModifyLectureAdapter;
+import RecyclerHelper.RecyclerModifyInterface;
 import RecyclerHelper.RecyclerViewInterface;
 
-public class LectureUpload extends AppCompatActivity implements RecyclerViewInterface {
+public class LectureUpload extends AppCompatActivity implements RecyclerModifyInterface, RecyclerViewQuizDeleteInterface {
     private TextView vTitle;
-    private RelativeLayout relativeLayout;
-    private RecyclerView recyclerView;
-//    private ArrayList<LectureHelper> lectureHelpers;
-//    private CourseHolder courseHolderAdapter;
+    private RelativeLayout relativeLayout, createQuiz;
+    private RecyclerView recyclerView, quizList;
+    private ArrayList<LectureHelper> lectures;
+    private ArrayList<String> quizTitle;
+    private ModifyLectureAdapter modifyLectureAdapter;
+    private QuizDeleteAdapter quizDeleteAdapter;
     private DatabaseReference reference;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +50,18 @@ public class LectureUpload extends AppCompatActivity implements RecyclerViewInte
         setContentView(R.layout.activity_lecture_upload);
         relativeLayout = findViewById(R.id.newLecture);
         vTitle = findViewById(R.id.title);
-        Intent i = getIntent();
+        i = getIntent();
         vTitle.setText(i.getStringExtra("ccName"));
+        createQuiz = findViewById(R.id.createQuiz);
+        createQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), QuizCreate.class);
+                intent.putExtra("ccPath", i.getStringExtra("ccPath"));
+                intent.putExtra("ccTitle", i.getStringExtra("ccName"));
+                startActivity(intent);
+            }
+        });
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,32 +76,85 @@ public class LectureUpload extends AppCompatActivity implements RecyclerViewInte
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-//        lectureHelpers = new ArrayList<>();
-//        courseHolderAdapter = new CourseHolder(getApplicationContext(),createCourseHelpers, this);
-//
-//        recyclerView.setAdapter(courseHolderAdapter);
-//
-//        reference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid())
-//                        .child(i.getStringExtra("ccKey")).child("lectures");
-//        reference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot :snapshot.getChildren()){
-//                    LectureHelper c = dataSnapshot.getValue(LectureHelper.class);
-//                    createCourseHelpers.add(c);
-//                }
-//                courseHolderAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        lectures = new ArrayList<>();
+        modifyLectureAdapter = new ModifyLectureAdapter(this,getApplicationContext(),lectures);
+        recyclerView.setAdapter(modifyLectureAdapter);
+
+        reference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid())
+                        .child(i.getStringExtra("ccKey")).child("lectures");
+        reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot :snapshot.getChildren()){
+                    LectureHelper c = dataSnapshot.getValue(LectureHelper.class);
+                    c.setlPath(dataSnapshot.getRef().getPath().toString());
+                    lectures.add(c);
+                }
+                modifyLectureAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        quizList = findViewById(R.id.quizList);
+        quizList.setHasFixedSize(true);
+        quizList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        quizTitle = new ArrayList<>();
+        quizDeleteAdapter = new QuizDeleteAdapter(getApplicationContext(),this,quizTitle);
+        quizList.setAdapter(quizDeleteAdapter);
+        reference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid())
+                .child(i.getStringExtra("ccKey")).child("quiz").child("quizdata");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                quizTitle.clear();
+                for(DataSnapshot title:snapshot.getChildren()){
+                    quizTitle.add(title.getKey());
+                }
+                quizDeleteAdapter.notifyDataSetChanged();
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
+    @Override
+    public void onModifyClick(int position) {
+        LectureHelper lectureHelper = lectures.get(position);
+        Intent intent = new Intent(getApplicationContext(), LectureModify.class);
+        intent.putExtra("Lpath",lectureHelper.getlPath());
+        intent.putExtra("Ltitle",lectureHelper.getTitle());
+        intent.putExtra("LvideoLink",lectureHelper.getVideoLink());
+        intent.putExtra("LnotesLink",lectureHelper.getNotesLink());
+        intent.putExtra("Lfinal",lectureHelper.getFinal());
+        startActivity(intent);
     }
 
     @Override
-    public void onCourseClick(int position) {
+    public void deleteQuiz(int position) {
+        reference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid())
+                .child(i.getStringExtra("ccKey")).child("quiz").child("quizdata").child(quizTitle.get(position));
+        reference.removeValue();
 
+    }
+
+    @Override
+    public void onQuizClick(int position) {
+        Intent intent = new Intent(getApplicationContext(),ShowQuizMarks.class);
+        intent.putExtra("quizTitle", quizTitle.get(position));
+        intent.putExtra("ccKey", i.getStringExtra("ccKey"));
+        startActivity(intent);
     }
 }

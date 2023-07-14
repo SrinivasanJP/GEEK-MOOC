@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,11 +33,11 @@ import com.google.firebase.storage.UploadTask;
 
 import Backend.LectureHelper;
 
-public class GettingNewLectureDetials extends AppCompatActivity {
+public class LectureModify extends AppCompatActivity {
     private EditText vTitle;
     private RelativeLayout vVideo,vNotes, btnAddLecture;
     private CheckBox vFinal;
-    private TextView btnText;
+    private TextView btnText, vKey, vDeleteBtn;
     private ProgressBar btnProgress;
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
@@ -47,13 +46,12 @@ public class GettingNewLectureDetials extends AppCompatActivity {
     private String vLink,title,nLink;
     private Intent i;
     private Boolean isFinal;
-    private LectureHelper lectureHelper;
+    private LectureHelper lectureHelper, selectedLecture;
     private long lectureCount;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_getting_new_lecture_detials);
+        setContentView(R.layout.activity_lecture_modify);
         vTitle = findViewById(R.id.titleInput);
         vVideo = findViewById(R.id.addVideo);
         vNotes = findViewById(R.id.addNotes);
@@ -61,77 +59,105 @@ public class GettingNewLectureDetials extends AppCompatActivity {
         btnAddLecture = findViewById(R.id.btnSubmit);
         btnText = findViewById(R.id.BtnText);
         btnProgress = findViewById(R.id.ProgressbarBtn);
+        vKey = findViewById(R.id.courseKey);
+        vDeleteBtn = findViewById(R.id.deleteLecture);
+
         i = getIntent();
-        databaseReference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(i.getStringExtra("ccKey")).child("lectures");
+        databaseReference = FirebaseDatabase.getInstance().getReference(i.getStringExtra("Lpath"));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                lectureCount = snapshot.getChildrenCount();
-                Log.d("LCount", snapshot.getKey());
-                vVideo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(!vTitle.getText().toString().equals(null)) {
-                            btnProgress.setVisibility(View.VISIBLE);
-                            btnText.setVisibility(View.INVISIBLE);
-                            storageReference = FirebaseStorage.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(i.getStringExtra("ccKey")).child("lecture")
-                                    .child(lectureCount+"_"+vTitle.getText().toString().replace(" ","_"));
-                            chooseVideo();
-                            Log.d("log", "choose video is run");
-
-                        }else{
-                            vTitle.setError("Please fill Title first");
-                        }
-                    }
-                });
-                vNotes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(!vTitle.getText().toString().equals(null)) {
-                            btnProgress.setVisibility(View.VISIBLE);
-                            btnText.setVisibility(View.INVISIBLE);
-                            storageReference = FirebaseStorage.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(i.getStringExtra("ccKey")).child("notes")
-                                    .child(lectureCount+"_"+vTitle.getText().toString().replace(" ","_"));
-                            chooseNotes();
-
-                        }else{
-                            vTitle.setError("Please fill Title first");
-                        }
-                    }
-                });
-                btnAddLecture.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        btnText.setVisibility(View.INVISIBLE);
-                        btnProgress.setVisibility(View.VISIBLE);
-                        lectureHelper = new LectureHelper();
-                        lectureHelper.setTitle(vTitle.getText().toString());
-                        lectureHelper.setNotesLink(nLink);
-                        lectureHelper.setVideoLink(vLink);
-                        lectureHelper.setFinal(vFinal.isChecked());
-                        databaseReference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(i.getStringExtra("ccKey")).child("lectures")
-                                .child(lectureCount+"_"+lectureHelper.getTitle().replace(" ","_"));
-                        databaseReference.setValue(lectureHelper).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(getApplicationContext(), "Lecture Created", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), Home.class));
-                                    finish();
-                                }else{
-                                    btnProgress.setVisibility(View.INVISIBLE);
-                                    btnText.setVisibility(View.VISIBLE);
-                                    Toast.makeText(getApplicationContext(), "Lecture Creation failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                });
-                    }
+               selectedLecture = snapshot.getValue(LectureHelper.class);
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+        vTitle.setText(i.getStringExtra("Ltitle"));
+        vFinal.setChecked(i.getBooleanExtra("Lfinal",false));
+        nLink = i.getStringExtra("LnotesLink");
+        vLink = i.getStringExtra("LvideoLink");
+        vKey.setText("Key: "+i.getStringExtra("Ltitle"));
+
+
+
+        vVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!vTitle.getText().toString().equals(null)) {
+                    btnProgress.setVisibility(View.VISIBLE);
+                    btnText.setVisibility(View.INVISIBLE);
+                    storageReference = FirebaseStorage.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(i.getStringExtra("ccKey")).child("lecture")
+                            .child(lectureCount+"_"+vTitle.getText().toString().replace(" ","_"));
+                    chooseVideo();
+                    Log.d("log", "choose video is run");
+
+                }else{
+                    vTitle.setError("Please fill Title first");
+                }
+            }
+        });
+        vNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!vTitle.getText().toString().equals(null)) {
+                    btnProgress.setVisibility(View.VISIBLE);
+                    btnText.setVisibility(View.INVISIBLE);
+                    storageReference = FirebaseStorage.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(i.getStringExtra("ccKey")).child("notes")
+                            .child(lectureCount+"_"+vTitle.getText().toString().replace(" ","_"));
+                    chooseNotes();
+
+                }else{
+                    vTitle.setError("Please fill Title first");
+                }
+            }
+        });
+        btnAddLecture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnText.setVisibility(View.INVISIBLE);
+                btnProgress.setVisibility(View.VISIBLE);
+                lectureHelper = new LectureHelper();
+                lectureHelper.setTitle(vTitle.getText().toString());
+                lectureHelper.setNotesLink(nLink);
+                lectureHelper.setVideoLink(vLink);
+                lectureHelper.setFinal(vFinal.isChecked());
+                databaseReference = FirebaseDatabase.getInstance().getReference(i.getStringExtra("Lpath"));
+                databaseReference.setValue(lectureHelper).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Lecture Created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Home.class));
+                            finish();
+                        }else{
+                            btnProgress.setVisibility(View.INVISIBLE);
+                            btnText.setVisibility(View.VISIBLE);
+                            Toast.makeText(getApplicationContext(), "Lecture Creation failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+        vDeleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                databaseReference = FirebaseDatabase.getInstance().getReference(i.getStringExtra("Lpath"));
+                databaseReference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(LectureModify.this, "Lecture deleted successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Home.class));
+                            finish();
+                        }else{
+                            Toast.makeText(LectureModify.this, "Unexpected Error Occur", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                
             }
         });
 
@@ -237,4 +263,4 @@ public class GettingNewLectureDetials extends AppCompatActivity {
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
-}
+    }

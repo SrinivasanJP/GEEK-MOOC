@@ -9,6 +9,7 @@ import androidx.media3.ui.PlayerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import Backend.CreateCourseHelper;
+
 public class RegisterCourse extends AppCompatActivity {
     private TextView vTitle, vDes, vRatings, vNoOfRatings, vStudents, vAuthor, vLastUpdated, vLanguage, vRegisterBtnText;
     private ProgressBar vRegisterProgressbar;
@@ -33,6 +36,8 @@ public class RegisterCourse extends AppCompatActivity {
     private MediaItem mediaItem;
     private DatabaseReference reference;
 
+    private CreateCourseHelper selectedCourse;
+    private Boolean read;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +94,11 @@ public class RegisterCourse extends AppCompatActivity {
             public void onClick(View view) {
                 vRegisterProgressbar.setVisibility(View.VISIBLE);
                 vRegisterBtnText.setVisibility(View.INVISIBLE);
+
+                DatabaseReference cReference = FirebaseDatabase.getInstance().getReference(intent.getStringExtra("ccPath"));
+                cReference.child("registrations").setValue(Integer.parseInt(intent.getStringExtra("ccRegistrations"))+1);
+                cReference.child("users").child(FirebaseAuth.getInstance().getUid()).setValue(true);
+
 
                 reference.child(FirebaseAuth.getInstance().getUid()).child("registeredCourses").child(intent.getStringExtra("ccKey")).setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

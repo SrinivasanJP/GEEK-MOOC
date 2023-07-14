@@ -42,14 +42,13 @@
       android:layout_below="@+id/newCourse"
       android:id="@+id/existingLable"
       android:layout_marginStart="20dp"/>
-<!--   <androidx.recyclerview.widget.RecyclerView-->
-<!--       android:layout_width="match_parent"-->
-<!--       android:layout_height="wrap_content"-->
-<!--       android:id="@+id/existingCourse"-->
-<!--       android:layout_below="@+id/existingLable"-->
-<!--       android:layout_margin="20dp"-->
-<!--       >-->
-
-<!--   </androidx.recyclerview.widget.RecyclerView>-->
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/existingCourse"
+       android:layout_below="@+id/existingLable"
+       android:layout_margin="20dp"
+       >
+   </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>
