@@ -136,6 +136,7 @@ public class ModifyCourse extends AppCompatActivity implements RecyclerViewInter
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(ModifyCourse.this, "Course Deleted", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), Login.class));
                                 }else{
                                     Toast.makeText(ModifyCourse.this, "Course Not Deleted", Toast.LENGTH_SHORT).show();
                                 }

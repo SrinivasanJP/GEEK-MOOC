@@ -108,6 +108,7 @@ public class SettingFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getContext(), "Your data have been deleted", Toast.LENGTH_SHORT).show();
+                            FirebaseAuth.getInstance().signOut();
                             startActivity(new Intent(getContext(), Login.class));
                         }else{
                             Toast.makeText(getContext(), "your data can't be deleted", Toast.LENGTH_SHORT).show();

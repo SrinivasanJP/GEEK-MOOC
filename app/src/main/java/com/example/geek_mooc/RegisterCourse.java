@@ -68,7 +68,6 @@ public class RegisterCourse extends AppCompatActivity {
         vPreviewPlayer = findViewById(R.id.previewPlayer);
         vRegisterProgressbar = findViewById(R.id.ProgressbarRegister);
         vRegisterBtnText = findViewById(R.id.BtnRegister);
-        vWatchListBtn = findViewById(R.id.watchListContainer);
         recyclerView = findViewById(R.id.showComments);
 
         recyclerView.setHasFixedSize(true);
@@ -123,7 +122,7 @@ public class RegisterCourse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final Boolean[] flag = {true};
-
+                reference = FirebaseDatabase.getInstance().getReference("users");
                 reference.child(FirebaseAuth.getInstance().getUid()).child("watchListCourses").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -157,6 +156,7 @@ public class RegisterCourse extends AppCompatActivity {
                 cReference.child("users").child(FirebaseAuth.getInstance().getUid()).setValue(true);
 
 
+                reference = FirebaseDatabase.getInstance().getReference("users");
                 reference.child(FirebaseAuth.getInstance().getUid()).child("registeredCourses").child(intent.getStringExtra("ccKey")).setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -178,6 +178,7 @@ public class RegisterCourse extends AppCompatActivity {
 
     }
     private void setwatchlist(){
+        reference = FirebaseDatabase.getInstance().getReference("users");
         if(current){
             reference.child(FirebaseAuth.getInstance().getUid()).child("watchListCourses").child(intent.getStringExtra("ccKey")).removeValue();
         }else{

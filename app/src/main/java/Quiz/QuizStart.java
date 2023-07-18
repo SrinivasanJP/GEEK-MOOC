@@ -40,7 +40,7 @@ public class QuizStart extends AppCompatActivity {
     private int position,correct,score;
 
     private CountDownTimer countDownTimer;
-    private int timerValue = 20;
+    private int timerValue = 600;
     private ProgressBar progressTimer;
 
 
@@ -51,7 +51,7 @@ public class QuizStart extends AppCompatActivity {
         getIntent = getIntent();
         progressTimer = findViewById(R.id.progresstimer);
 
-        countDownTimer = new CountDownTimer(20000,1000) {
+        countDownTimer = new CountDownTimer(600000,1000) {
             @Override
             public void onTick(long l) {
                 progressTimer.setProgress(--timerValue);

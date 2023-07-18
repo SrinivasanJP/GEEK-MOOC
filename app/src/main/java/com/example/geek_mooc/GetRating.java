@@ -181,7 +181,11 @@ public class GetRating extends AppCompatActivity {
                 reference.child("ratingsTotal").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        reference.child("ratingsTotal").setValue(snapshot.getValue(Integer.class)+rating);
+                        if(snapshot.hasChild("ratingTotal")) {
+                            reference.child("ratingsTotal").setValue(snapshot.getValue(Integer.class) + rating);
+                        }else{
+                            reference.child("ratingTotal").setValue(rating);
+                        }
                     }
 
                     @Override
