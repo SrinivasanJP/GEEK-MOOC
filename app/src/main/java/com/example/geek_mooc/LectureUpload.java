@@ -144,9 +144,30 @@ public class LectureUpload extends AppCompatActivity implements RecyclerModifyIn
 
     @Override
     public void deleteQuiz(int position) {
+        String title = quizTitle.get(position);
         reference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid())
-                .child(i.getStringExtra("ccKey")).child("quiz").child("quizdata").child(quizTitle.get(position));
+                .child(i.getStringExtra("ccKey")).child("quiz").child("quizdata").child(title);
         reference.removeValue();
+        reference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid())
+                .child(i.getStringExtra("ccKey")).child("quiz").child("quizScore");
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot users: snapshot.getChildren()){
+                    Log.d("UT_Delete", "onDataChange: "+users.getKey());
+                    if(users.hasChild(title)){
+                        reference = reference.child(users.getKey()).child(title);
+                        reference.removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

@@ -7,6 +7,7 @@
     android:background="@color/background_dark"
     android:padding="5dp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,21 +67,57 @@
         </LinearLayout>
 
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Courses in Progress:"
-        android:textColor="@color/white"
-        android:id="@+id/lableProgress"
-        android:layout_marginStart="20dp"
-        android:layout_below="@+id/statisticsContainer"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/showCourse"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/lableProgress"
- />
+        android:layout_below="@+id/statisticsContainer">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Courses in Progress:"
+                android:textColor="@color/white"
+                android:id="@+id/lableProgress"
+                android:layout_marginStart="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No course under progress"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:layout_below="@+id/lableProgress"
+                android:id="@+id/noCourse"
+                android:layout_marginStart="20dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/showCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lableProgress"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Courses Completed:"
+                android:textColor="@color/white"
+                android:id="@+id/lableCompleted"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_below="@+id/showCourse"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/showCompletedCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lableCompleted"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
 
 
 </RelativeLayout>

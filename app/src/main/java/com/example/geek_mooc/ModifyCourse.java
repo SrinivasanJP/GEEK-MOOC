@@ -130,6 +130,7 @@ public class ModifyCourse extends AppCompatActivity implements RecyclerViewInter
                 deleteAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        reference = FirebaseDatabase.getInstance().getReference(coursePath);
                         reference.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -204,18 +205,6 @@ public class ModifyCourse extends AppCompatActivity implements RecyclerViewInter
 
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
     }
     private void setUsers(){
         for (String keys : userKeys) {
@@ -225,9 +214,7 @@ public class ModifyCourse extends AppCompatActivity implements RecyclerViewInter
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     users.add(snapshot.getValue(UserHelper.class));
-                    Log.d("UT-names", snapshot.getValue(UserHelper.class).getName());
                     userAdapter.notifyDataSetChanged();
-
                 }
 
                 @Override
@@ -245,6 +232,11 @@ public class ModifyCourse extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onClickNotesBtn(int position) {
+
+    }
+
+    @Override
+    public void onCompletedCourseClick(int position) {
 
     }
 }

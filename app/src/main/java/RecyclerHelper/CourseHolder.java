@@ -30,13 +30,15 @@ public class CourseHolder extends RecyclerView.Adapter<CourseHolder.MyViewHolder
     Context context;
     MediaItem mediaItem;
     ExoPlayer player;
+    Boolean completed;
 
     ArrayList<CreateCourseHelper> courses;
 
-    public CourseHolder(Context context, ArrayList<CreateCourseHelper> courses, RecyclerViewInterface recyclerViewInterface) {
+    public CourseHolder(Context context, ArrayList<CreateCourseHelper> courses, RecyclerViewInterface recyclerViewInterface,Boolean completed) {
         this.context = context;
         this.courses = courses;
         this.recyclerViewInterface = recyclerViewInterface;
+        this.completed = completed;
     }
 
     @NonNull
@@ -44,7 +46,7 @@ public class CourseHolder extends RecyclerView.Adapter<CourseHolder.MyViewHolder
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.recycler_courselist,parent,false);
-        return new MyViewHolder(view, recyclerViewInterface);
+        return new MyViewHolder(view, recyclerViewInterface, completed);
     }
 
     @Override
@@ -72,7 +74,7 @@ public class CourseHolder extends RecyclerView.Adapter<CourseHolder.MyViewHolder
         PlayerView playerView;
         TextView vTitle, vDes;
 
-        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface, Boolean completed) {
             super(itemView);
             vTitle = itemView.findViewById(R.id.videoTitle);
             vDes = itemView.findViewById(R.id.videoDescription);
@@ -82,7 +84,10 @@ public class CourseHolder extends RecyclerView.Adapter<CourseHolder.MyViewHolder
                 public void onClick(View view) {
                     if(recyclerViewInterface != null){
                         int pos = getAbsoluteAdapterPosition();
-                        if(pos!=RecyclerView.NO_POSITION){
+                        if(completed){
+                            recyclerViewInterface.onCompletedCourseClick(pos);
+                        }
+                        else if(pos!=RecyclerView.NO_POSITION){
                             recyclerViewInterface.onCourseClick(pos);
                         }
                     }

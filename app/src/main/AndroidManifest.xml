@@ -13,6 +13,14 @@
         android:theme="@style/Theme.GEEKMOOC"
         tools:targetApi="31">
         <activity
+            android:name=".GetRating"
+            android:exported="false"
+            android:label="@string/title_activity_get_rating"
+            android:theme="@style/Theme.GEEKMOOC" />
+        <activity
+            android:name=".CourseCategory"
+            android:exported="false" />
+        <activity
             android:name=".ShowQuizMarks"
             android:exported="false" />
         <activity

@@ -38,10 +38,11 @@ public class RegisteredCoursesFragment extends Fragment implements RecyclerViewI
         // Required empty public constructor
     }
 
-    private TextView vNoOfRegisters;
-    private RecyclerView recyclerView;
-    private CourseHolder courseHolderAdapter;
-    private ArrayList<CreateCourseHelper> createCourseHelpers;
+    private TextView vNoOfRegisters, vNoOfCompletion, vNoCourseProgress;
+    private RecyclerView recyclerView,completedView;
+    private CourseHolder courseHolderAdapter, completedCourseAdapter;
+    private ArrayList<CreateCourseHelper> createCourseHelpers, completedCourseHelper;
+    private ArrayList<String> completedKeys,progressKeys;
     private DatabaseReference reference;
     private View view;
     @Override
@@ -49,14 +50,48 @@ public class RegisteredCoursesFragment extends Fragment implements RecyclerViewI
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_registered_courses, container, false);
+
+        completedKeys = new ArrayList<>();
+        completedCourseHelper = new ArrayList<>();
+        createCourseHelpers = new ArrayList<>();
+        progressKeys = new ArrayList<>();
         recyclerView = view.findViewById(R.id.showCourse);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        createCourseHelpers = new ArrayList<>();
-        courseHolderAdapter = new CourseHolder(getContext(),createCourseHelpers, this);
+
+        completedView = view.findViewById(R.id.showCompletedCourse);
+        completedView.setHasFixedSize(true);
+        completedView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        courseHolderAdapter = new CourseHolder(getContext(),createCourseHelpers, this,false);
+
+        completedCourseAdapter = new CourseHolder(getContext(),completedCourseHelper,this,true);
+        completedView.setAdapter(completedCourseAdapter);
+
         recyclerView.setAdapter(courseHolderAdapter);
 
+
         vNoOfRegisters = view.findViewById(R.id.Noofregisters);
+        vNoOfCompletion = view.findViewById(R.id.NoofCompleted);
+        vNoCourseProgress = view.findViewById(R.id.noCourse);
+        reference = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid()).child("completedCourses");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                completedKeys.clear();
+                for(DataSnapshot keys: snapshot.getChildren()){
+                    completedKeys.add(keys.getKey());
+                }
+                vNoOfCompletion.setText(completedKeys.size()+"");
+                getCourses();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         reference = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid()).child("registeredCourses");
@@ -64,34 +99,11 @@ public class RegisteredCoursesFragment extends Fragment implements RecyclerViewI
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                createCourseHelpers.clear();
-                for(DataSnapshot keys: snapshot.getChildren()){
-
-                    reference = FirebaseDatabase.getInstance().getReference("Courses");
-                    reference.addValueEventListener(new ValueEventListener() {
-                        @SuppressLint("RestrictedApi")
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            createCourseHelpers.clear();
-                            for(DataSnapshot dataSnapshot :snapshot.getChildren()){
-                                for(DataSnapshot course : dataSnapshot.getChildren()){
-                                    if(course.getKey().equals(keys.getKey())) {
-                                        CreateCourseHelper c = course.getValue(CreateCourseHelper.class);
-                                        c.setCpath(course.getRef().getPath().toString());
-                                        createCourseHelpers.add(c);
-                                    }
-                                }
-                            }
-                            vNoOfRegisters.setText(courseHolderAdapter.getItemCount()+"");
-                            courseHolderAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            Log.d("UT database", error.toString());
-                        }
-                    });
+                progressKeys.clear();
+                for(DataSnapshot key: snapshot.getChildren()){
+                    progressKeys.add(key.getKey());
                 }
+               getCourses();
             }
 
             @Override
@@ -117,6 +129,7 @@ public class RegisteredCoursesFragment extends Fragment implements RecyclerViewI
         intent.putExtra("ccUpdate",createCourseHelpers.get(position).getLastUpdate());
         intent.putExtra("ccKey", createCourseHelpers.get(position).getKey());
         intent.putExtra("ccPath", createCourseHelpers.get(position).getCpath());
+        intent.putExtra("completed", false);
         createCourseHelpers.clear();
         startActivity(intent);
 
@@ -126,4 +139,61 @@ public class RegisteredCoursesFragment extends Fragment implements RecyclerViewI
     public void onClickNotesBtn(int position) {
 
     }
+
+    @Override
+    public void onCompletedCourseClick(int position) {
+        Intent intent = new Intent(getContext(), CourseTakingPage.class);
+        intent.putExtra("ccName",completedCourseHelper.get(position).getTitle());
+        intent.putExtra("ccDes",completedCourseHelper.get(position).getDescription());
+        intent.putExtra("ccIntro",completedCourseHelper.get(position).getIntrolink());
+        intent.putExtra("ccLang",completedCourseHelper.get(position).getLanguage());
+        intent.putExtra("ccRating",completedCourseHelper.get(position).getRatings());
+        intent.putExtra("ccRegistrations",completedCourseHelper.get(position).getRegistrations()+"");
+        intent.putExtra("ccAuthor",completedCourseHelper.get(position).getAuthor());
+        intent.putExtra("ccNoofRatings",completedCourseHelper.get(position).getNoOfRatings());
+        intent.putExtra("ccUpdate",completedCourseHelper.get(position).getLastUpdate());
+        intent.putExtra("ccKey", completedCourseHelper.get(position).getKey());
+        intent.putExtra("ccPath", completedCourseHelper.get(position).getCpath());
+        intent.putExtra("completed", true);
+        completedCourseHelper.clear();
+        startActivity(intent);
+    }
+
+    private void getCourses(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Courses");
+            reference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("RestrictedApi")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    completedCourseHelper.clear();
+                    createCourseHelpers.clear();
+                    for(DataSnapshot authours :snapshot.getChildren()){
+                        for(DataSnapshot course : authours.getChildren()){
+                            Log.d("UT_final", "onDataChange: "+course.getKey());
+                            if(completedKeys.contains(course.getKey())){
+                                CreateCourseHelper c = course.getValue(CreateCourseHelper.class);
+                                c.setCpath(course.getRef().getPath().toString());
+                                completedCourseHelper.add(c);
+                            }
+                            else if(progressKeys.contains(course.getKey())) {
+                                CreateCourseHelper c = course.getValue(CreateCourseHelper.class);
+                                c.setCpath(course.getRef().getPath().toString());
+                                createCourseHelpers.add(c);
+                            }
+                        }
+                    }
+                    vNoOfRegisters.setText(courseHolderAdapter.getItemCount()+"");
+                    courseHolderAdapter.notifyDataSetChanged();
+                    completedCourseAdapter.notifyDataSetChanged();
+                    if(createCourseHelpers.size()==0){
+                        vNoCourseProgress.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.d("UT database", error.toString());
+                }
+            });
+        }
 }

@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/username"
             android:hint="Enter User name"
+            android:textColor="@color/black"
             android:inputType="textEmailAddress"
             android:background="@drawable/curve_box"
             />
@@ -68,6 +69,7 @@
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:background="@drawable/curve_box"
+        android:textColor="@color/black"
         />
     </com.google.android.material.textfield.TextInputLayout>
     <LinearLayout

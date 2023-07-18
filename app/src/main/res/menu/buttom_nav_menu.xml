@@ -18,8 +18,8 @@
         android:title="Manage"/>
     <item
         android:id="@+id/setting"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="Setting"/>
+        android:icon="@drawable/baseline_person_24"
+        android:title="Profile"/>
 
 
 </menu>

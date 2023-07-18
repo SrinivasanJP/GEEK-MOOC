@@ -66,7 +66,7 @@ public class CreateCourseFragment extends Fragment implements RecyclerViewInterf
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         existingCourses = new ArrayList<>();
-        courseHolderAdapter = new CourseHolder(getContext(),existingCourses, this);
+        courseHolderAdapter = new CourseHolder(getContext(),existingCourses, this,false);
         recyclerView.setAdapter(courseHolderAdapter);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("RestrictedApi")
@@ -98,6 +98,11 @@ public class CreateCourseFragment extends Fragment implements RecyclerViewInterf
 
     @Override
     public void onClickNotesBtn(int position) {
+
+    }
+
+    @Override
+    public void onCompletedCourseClick(int position) {
 
     }
 }

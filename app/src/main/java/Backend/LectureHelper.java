@@ -1,7 +1,7 @@
 package Backend;
 
 public class LectureHelper {
-    String title, videoLink, notesLink,lPath;
+    String title, videoLink, notesLink,lPath,courseKey;
     int viewsCount,likeCount,dislikeCount,noLecture;
     Boolean isFinal;
 

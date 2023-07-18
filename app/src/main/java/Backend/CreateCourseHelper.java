@@ -3,14 +3,15 @@ package Backend;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CreateCourseHelper {
     String Title, description, basket, thumbnail, language, introlink, key, author, lastUpdate,Cpath;
 
-    int ratings, registrations, noOfRatings;
+    int ratingsTotal, registrations, noOfRatings;
     public CreateCourseHelper(){}
 
-    public CreateCourseHelper(String title, String description, String basket, String thumbnail, String language, String introlink, String key, String author, String lastUpdate, String cpath, int ratings, int registrations, int noOfRatings) {
+    public CreateCourseHelper(String title, String description, String basket, String thumbnail, String language, String introlink, String key, String author, String lastUpdate, String cpath, int ratingsTotal, int registrations, int noOfRatings) {
         Title = title;
         this.description = description;
         this.basket = basket;
@@ -21,7 +22,7 @@ public class CreateCourseHelper {
         this.author = author;
         this.lastUpdate = lastUpdate;
         Cpath = cpath;
-        this.ratings = ratings;
+        this.ratingsTotal = ratingsTotal;
         this.registrations = registrations;
         this.noOfRatings = noOfRatings;
     }
@@ -75,11 +76,11 @@ public class CreateCourseHelper {
     }
 
     public int getRatings() {
-        return ratings;
+        return ratingsTotal;
     }
 
-    public void setRatings(int ratings) {
-        this.ratings = ratings;
+    public void setRatings(int ratingsTotal) {
+        this.ratingsTotal = ratingsTotal;
     }
 
     public int getRegistrations() {

@@ -15,10 +15,13 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,9 +53,11 @@ public class GettingCourseDetials extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private CreateCourseHelper createCourseHelper;
     private SharedPreferences sharedPreference;
+    private Spinner basket;
+    private String basketitems[];
 
     UploadTask uploadTask;
-    String link;
+    String link, basketSelected;
 
 
     @Override
@@ -72,12 +77,32 @@ public class GettingCourseDetials extends AppCompatActivity {
         vBtnProgress = findViewById(R.id.ProgressbarBtn);
         vUploadProgress = findViewById(R.id.progressUpload);
         vAddVideoBtn = findViewById(R.id.addVideo);
+        basket = findViewById(R.id.basket);
+
+
+
+        basketitems = new String[]{"programming", "computers", "trading", "iot", "science", "astronomy"};
+
+        ArrayAdapter<String> baskerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, basketitems);
+        basket.setAdapter(baskerAdapter);
+        basket.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                basketSelected = basketitems[i];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                basketSelected = "general";
+            }
+        });
+
 
         vUploadProgress.setVisibility(View.INVISIBLE);
         vAddVideoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(vTitle.getText().toString()!=null) {
+                if(!vTitle.getText().toString().isEmpty()) {
                     vBtnProgress.setVisibility(View.VISIBLE);
                     vBtnText.setVisibility(View.INVISIBLE);
                     storageReference = FirebaseStorage.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(vTitle.getText().toString().replace(" ", "_"));
@@ -99,8 +124,10 @@ public class GettingCourseDetials extends AppCompatActivity {
                 createCourseHelper.setDescription(vDescription.getText().toString().trim());
                 createCourseHelper.setLanguage(vLanguage.getText().toString().trim());
                 createCourseHelper.setIntrolink(link);
+                createCourseHelper.setBasket(basketSelected);
                 createCourseHelper.setKey(vTitle.getText().toString().replace(" ","_")+FirebaseAuth.getInstance().getUid().substring(0,6));
                 createCourseHelper.setAuthor(sharedPreference.getString(SharedPreferenceStore.KEY_NAME,null));
+                Log.d("UT_authorname", "onClick: "+sharedPreference.getString(SharedPreferenceStore.KEY_NAME,SharedPreferenceStore.KEY_NAME));
                 Calendar calendar;
                 calendar = Calendar.getInstance();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");

@@ -3,11 +3,14 @@ package Quiz;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,12 +39,53 @@ public class QuizStart extends AppCompatActivity {
     private String coursePath;
     private int position,correct,score;
 
+    private CountDownTimer countDownTimer;
+    private int timerValue = 20;
+    private ProgressBar progressTimer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_start);
         getIntent = getIntent();
+        progressTimer = findViewById(R.id.progresstimer);
+
+        countDownTimer = new CountDownTimer(20000,1000) {
+            @Override
+            public void onTick(long l) {
+                progressTimer.setProgress(--timerValue);
+            }
+
+            @Override
+            public void onFinish() {
+                Dialog dialog = new Dialog(QuizStart.this);
+                dialog.setContentView(R.layout.dialog_time_out);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+                dialog.findViewById(R.id.Backbtn).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        reference = FirebaseDatabase.getInstance().getReference(coursePath).child("quiz").child("quizScore").child(FirebaseAuth.getInstance().getUid()).child(getIntent.getStringExtra("quizTitle"));
+                        reference.setValue(score).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(QuizStart.this, "Your score "+score, Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), Home.class));
+                                }else{
+                                    vSubmitText.setVisibility(View.VISIBLE);
+                                    vProgressbar.setVisibility(View.INVISIBLE);
+                                    Toast.makeText(QuizStart.this, "Unknown error occors", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+                dialog.show();
+            }
+        }.start();
+
+
         coursePath = getIntent.getStringExtra("ccPath");
         quizData = new ArrayList<>();
         position=0;

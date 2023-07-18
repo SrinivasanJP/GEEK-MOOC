@@ -25,98 +25,145 @@
 
             <TextView
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
+                android:background="@drawable/curve_box_dark"
+                android:padding="10dp"
                 android:layout_marginBottom="2dp"
                 android:text="PlaceHolder for title of the course"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:text="Description placeHolder"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:id="@+id/description"
-                android:layout_margin="2dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="rating : 5.0"
-                android:layout_below="@+id/description"
-                android:textColor="@color/white"
-                android:layout_margin="2dp"
-                android:id="@+id/rating"
-                android:textSize="15sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/rating"
-                android:layout_below="@+id/description"
-                android:textColor="@color/white"
-                android:text="(noOfratings)"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:id="@+id/noOfRatings"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/noOfRatings"
-                android:layout_below="@+id/description"
-                android:textColor="@color/white"
-                android:text="1010101 Students"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="2dp"
-                android:id="@+id/noOfStudents"
-                />
+                android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/createdBy"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rating"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginBottom="2dp"
-                android:text="Created by Dr. Srinivasan J P"
-                android:textColor="@color/white" />
+                android:id="@+id/containernevermind"
+                android:layout_below="@+id/description"
+                android:padding="10dp"
+                android:background="@drawable/curve_box_dark">
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="rating : 5.0"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/rating"
+                    android:textColor="@color/white"
+                    android:text="(noOfratings)"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/noOfRatings"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/noOfRatings"
+                    android:textColor="@color/white"
+                    android:text="1010101 Students"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="2dp"
+                    android:id="@+id/noOfStudents"
+                    />
+            </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/containernevermind"
+                android:id="@+id/createdBy"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/dark_back">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:id="@+id/edit"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/man" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:layout_weight="2">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:id="@+id/author"
+                            android:layout_weight="1"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/baseline_info_24"
+                            android:gravity="center_vertical"
+                            android:text="Last Updated dd/mm/yyyy"
+                            android:layout_weight="1"
+                            android:id="@+id/updated"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/createdBy"
-                android:drawableStart="@drawable/baseline_info_24"
-                android:gravity="center_vertical"
-                android:layout_marginStart="2dp"
-                android:text="Last Updated dd/mm/yyyy"
-                android:layout_marginTop="20dp"
-                android:id="@+id/updated"
-                android:textColor="@color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/updated"
                 android:drawableStart="@drawable/baseline_language_24"
                 android:gravity="center_vertical"
                 android:layout_marginStart="2dp"
                 android:text="Tamil"
                 android:id="@+id/lang"
                 android:textColor="@color/white"/>
+
             <ScrollView
+                android:id="@+id/commentContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/lang"
-                android:id="@+id/commentContainer"
-                android:layout_margin="2dp">
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:id="@+id/showComments"
+                    android:layout_height="match_parent" />
             </ScrollView>
         </RelativeLayout>
     </ScrollView>
@@ -180,10 +227,4 @@
                 android:visibility="invisible" />
         </RelativeLayout>
     </RelativeLayout>
-
-
-
-
-
-
 </RelativeLayout>

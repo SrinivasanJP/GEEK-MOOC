@@ -58,7 +58,7 @@ public class CourseTakingPage extends AppCompatActivity implements RecyclerViewI
 
     private TextView vTitle,vLikeCount, vViewsCount, vUnRegister;
     private CheckBox vLike,vDislike;
-    private RelativeLayout vDownloads, vStartQuizBtn;
+    private RelativeLayout vDownloads, vRateBtn;
     private RecyclerView lectureList,quizList;
     private DatabaseReference reference;
     private Intent preIntent;
@@ -91,6 +91,21 @@ public class CourseTakingPage extends AppCompatActivity implements RecyclerViewI
         vDownloads = findViewById(R.id.downloadBtn);
         lectureList = findViewById(R.id.lectureList);
         quizList = findViewById(R.id.quizlist);
+        vRateBtn = findViewById(R.id.btnRate);
+
+        vRateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),GetRating.class);
+                intent.putExtra("ccName", preIntent.getStringExtra("ccName"));
+                intent.putExtra("ccAuthor", preIntent.getStringExtra("ccAuthor"));
+                intent.putExtra("ccPath", preIntent.getStringExtra("ccPath"));
+                startActivity(intent);
+            }
+        });
+        if(preIntent.getBooleanExtra("completed",false)){
+            vRateBtn.setVisibility(View.VISIBLE);
+        }
 
         vUnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,6 +244,11 @@ public class CourseTakingPage extends AppCompatActivity implements RecyclerViewI
         startActivity(i);
     }
 
+    @Override
+    public void onCompletedCourseClick(int position) {
+
+    }
+
     public void auxSetters(int position){
         if(lectureHelper.size()==0){
             vTitle.setText("No Lectures Available yet");
@@ -240,7 +260,6 @@ public class CourseTakingPage extends AppCompatActivity implements RecyclerViewI
             //ssMediaSource Generation
             dataSourceFactory = new DefaultHttpDataSource.Factory();
             player = new ExoPlayer.Builder(getApplicationContext()).build();
-            Log.d("Onclick load", lectureHelper.get(position).getVideoLink());
             player.setMediaItem(MediaItem.fromUri(Uri.parse(lectureHelper.get(position).getVideoLink())));
             vCouresPlayer.setPlayer(player);
             player.prepare();
@@ -248,6 +267,19 @@ public class CourseTakingPage extends AppCompatActivity implements RecyclerViewI
             vTitle.setText(selectedLecture.getTitle());
             vLikeCount.setText(selectedLecture.getLikeCount() + "");
             vViewsCount.setText("views "+selectedLecture.getViewsCount() );
+            if(lectureHelper.get(position).getFinal()){
+                reference = FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getUid()).child("completedCourses");
+                reference.child(preIntent.getStringExtra("ccKey")).setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(CourseTakingPage.this, "Successfully completed this course", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(CourseTakingPage.this, "Course completed not registered", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
 
             vLike.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -291,6 +323,22 @@ public class CourseTakingPage extends AppCompatActivity implements RecyclerViewI
             intent.putExtra("ccPath",preIntent.getStringExtra("ccPath"));
             intent.putExtra("ccTitle", preIntent.getStringExtra("ccName"));
             intent.putExtra("quizTitle",quizTitle.get(position));
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(CourseTakingPage.this);
+            builder.setTitle("Confirm to start you quiz");
+            builder.setMessage("Instructions:\n1. For every questions you can spare 30s of time slice.\n2.You can't come back to previous question\n\nAre you ready to start?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(intent);
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(CourseTakingPage.this, "You can always navigate to this place to take your quiz", Toast.LENGTH_SHORT).show();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
     }
 }

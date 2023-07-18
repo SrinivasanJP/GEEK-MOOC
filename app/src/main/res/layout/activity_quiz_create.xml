@@ -27,6 +27,7 @@
         android:textSize="22sp"
         android:layout_below="@+id/actionbar"
         android:id="@+id/title"/>
+
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"

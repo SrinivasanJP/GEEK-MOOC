@@ -65,7 +65,7 @@ public class ManageCourseFragment extends Fragment implements RecyclerViewInterf
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         createCourseHelpers = new ArrayList<>();
-        courseHolderAdapter = new CourseHolder(getContext(),createCourseHelpers, this);
+        courseHolderAdapter = new CourseHolder(getContext(),createCourseHelpers, this,false);
 
         recyclerView.setAdapter(courseHolderAdapter);
         reference.addValueEventListener(new ValueEventListener() {
@@ -109,6 +109,11 @@ public class ManageCourseFragment extends Fragment implements RecyclerViewInterf
 
     @Override
     public void onClickNotesBtn(int position) {
+
+    }
+
+    @Override
+    public void onCompletedCourseClick(int position) {
 
     }
 }

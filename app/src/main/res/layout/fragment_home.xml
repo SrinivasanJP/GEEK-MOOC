@@ -52,44 +52,257 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             app:queryHint="Search Course"
-
             app:iconifiedByDefault="false"
             android:hapticFeedbackEnabled="true"
             android:id="@+id/searchBox"
             />
     </androidx.cardview.widget.CardView>
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/tool_bar"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:id="@+id/search_bar"-->
-<!--        android:background="@drawable/mainbackground"-->
-<!--        android:layout_margin="20dp"-->
-<!--        android:padding="10dp"-->
-<!--        >-->
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="10"-->
-<!--            android:src="@drawable/baseline_search_24"/>-->
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:text="Search Course"-->
-<!--            android:textColor="#aaaaaa"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_weight="1"/>-->
-<!--    </LinearLayout>-->
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/showCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/search_bar"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp" />
+        android:visibility="gone"
+        android:id="@+id/searchHelper"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/searchHelper">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container">
+        <TextView
+            android:id="@+id/categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Categories"
+            android:textColor="@color/white" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/categories"
+            android:id="@+id/categoriesContainer">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:id="@+id/programming"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:elevation="20dp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/layer3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/programming"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.3"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Programming"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:id="@+id/computers"
+                    android:elevation="20dp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/layer3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/computers"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Computers"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_centerInParent="true"
+                            android:textSize="25sp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:id="@+id/trading"
+                    android:elevation="20dp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/layer3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/trading"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trading"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_centerInParent="true"
+                            android:textSize="25sp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:elevation="20dp"
+                    android:id="@+id/iot"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/layer3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/iot"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="IoT"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_centerInParent="true"
+                            android:textSize="25sp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:id="@+id/science"
+                    android:elevation="20dp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/layer3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/science"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Science"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_centerInParent="true"
+                            android:textSize="25sp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="15dp"
+                    android:id="@+id/astronomy"
+                    android:elevation="20dp"
+                    android:layout_margin="10dp"
+                    app:cardBackgroundColor="@color/layer3">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="150dp"
+                            android:src="@drawable/austro"
+                            android:scaleType="centerCrop"
+                            android:alpha="0.3"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Astronomy"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:layout_centerInParent="true"
+                            android:textSize="25sp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/seggestedLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoriesContainer"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Suggested Courses"
+            android:textColor="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/showCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/seggestedLabel"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp" />
+        <TextView
+            android:id="@+id/watchlistLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/showCourse"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Watchlisted Courses"
+            android:textColor="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/showWatchlistCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/watchlistLabel"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp" />
+    </RelativeLayout>
+</ScrollView>
+
+
 
 </RelativeLayout>

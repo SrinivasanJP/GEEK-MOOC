@@ -112,16 +112,18 @@ public class Login extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<DataSnapshot> task) {
                                             if (task.isSuccessful()) {
+                                                DataSnapshot dataSnapshot = task.getResult();
+                                                name = String.valueOf(dataSnapshot.child("name").getValue());
+                                                mobile = String.valueOf(dataSnapshot.child("mobile").getValue());
+                                                sharedPreferences = getSharedPreferences(SharedPreferenceStore.SHARED_PREFERENCE_NAME, MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                editor.putString(SharedPreferenceStore.KEY_NAME, name).apply();
+                                                editor.putString(SharedPreferenceStore.KEY_MOBILE, mobile).apply();
                                                 if (!task.getResult().exists()) {
+
                                                     startActivity(new Intent(getApplicationContext(), Basic_Info.class));
                                                 } else {
-                                                    DataSnapshot dataSnapshot = task.getResult();
-                                                    name = String.valueOf(dataSnapshot.child("name").getValue());
-                                                    mobile = String.valueOf(dataSnapshot.child("mobile").getValue());
-                                                    sharedPreferences = getSharedPreferences(SharedPreferenceStore.SHARED_PREFERENCE_NAME, MODE_PRIVATE);
-                                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                                    editor.putString(SharedPreferenceStore.KEY_NAME, name).apply();
-                                                    editor.putString(SharedPreferenceStore.KEY_MOBILE, mobile).apply();
+
                                                     startActivity(new Intent(getApplicationContext(), Home.class));
                                                     finish();
                                                 }

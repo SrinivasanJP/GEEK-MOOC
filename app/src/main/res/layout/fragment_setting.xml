@@ -2,16 +2,343 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Fragments.SettingFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
-
-    <Button
-        android:id="@+id/logout"
+    tools:context="Fragments.SettingFragment"
+    android:background="@color/background_dark">
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_centerInParent="true"/>
+        android:text="Profile"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/toolbar"/>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/toolbar">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/basicContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/curve_box_dark"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/profileImg"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/man" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileImg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Name"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Educational Background"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/role"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Email"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:id="@+id/aboutContainer"
+            android:layout_below="@id/basicContainer"
+            android:background="@drawable/curve_box_dark">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/about"
+                android:text="about"
+                android:textSize="20sp"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/curve_box_dark"
+            android:id="@+id/networkContainer"
+            android:layout_below="@+id/aboutContainer"
+            android:layout_marginHorizontal="15dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gitBtn"
+                android:background="@drawable/curve_box"
+                android:padding="10dp"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@id/gitImg"
+                    android:layout_marginStart="120dp"
+                    android:src="@drawable/git"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/gitImg"
+                    android:text="GITHUB"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/othersBtn"
+                android:layout_below="@+id/gitBtn"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/curve_box"
+                android:padding="10dp"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@id/otherImg"
+                    android:layout_marginStart="120dp"
+                    android:src="@drawable/socailother"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/otherImg"
+                    android:text="Website"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:id="@+id/alldata"
+            android:layout_below="@+id/networkContainer"
+            android:layout_margin="20dp"
+            android:background="@drawable/curve_box_dark">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Name: "
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Srinivasan JP"
+                        android:layout_weight="4"
+                        android:id="@+id/name1"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Mobile:"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="+91 6380084764"
+                        android:layout_weight="4"
+                        android:id="@+id/mobile"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:textStyle="bold"
+                        android:text="Gender:"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Male"
+                        android:id="@+id/gender"
+                        android:layout_weight="4"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Country:"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="India"
+                        android:layout_weight="4"
+                        android:id="@+id/country"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Language:"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="10dp"
+                        android:text="Tamil"
+                        android:layout_weight="4"
+                        android:id="@+id/language"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"/>
+
+                </TableRow>
+            </TableLayout>
+
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit your Profile"
+            android:textColor="#FFC107"
+            android:id="@+id/modifydetials"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_below="@+id/alldata"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete your data"
+            android:id="@+id/deleteData"
+            android:textColor="@color/red"
+            android:layout_below="@+id/modifydetials"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="80dp"
+            android:textStyle="bold"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/logout"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@+id/deleteData"
+        android:background="@drawable/curve_box"
+        android:padding="10dp"
+
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@id/power"
+            android:layout_marginStart="120dp"
+            android:src="@drawable/baseline_power_settings_new_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:layout_toRightOf="@+id/power"
+            android:text="LOGOUT"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
+
 
 </RelativeLayout>

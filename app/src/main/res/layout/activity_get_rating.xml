@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".GetRating"
+    android:background="@color/background_dark">
+
+
+    <TextView
+        android:id="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Rate this course"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title place holder"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:textColor="@color/white"
+                android:id="@+id/title"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginTop="20dp"
+                android:id="@+id/authorProfile"
+                app:cardElevation="20dp"
+                app:cardBackgroundColor="@color/layer3"
+                app:cardCornerRadius="20dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:id="@+id/authorImg"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/man"
+                        android:layout_margin="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textColor="@color/white"
+                        android:id="@+id/name"
+                        android:layout_toRightOf="@+id/authorImg"
+                        android:textSize="20sp"
+                        android:layout_marginTop="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="+916380084764"
+                        android:textColor="@color/white"
+                        android:layout_toRightOf="@+id/authorImg"
+                        android:layout_below="@+id/name"
+                        android:id="@+id/no"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="email@email.com"
+                        android:textColor="@color/white"
+                        android:layout_toRightOf="@+id/authorImg"
+                        android:textSize="18sp"
+                        android:id="@+id/email"
+                        android:layout_below="@+id/no"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/donate"
+                android:layout_below="@+id/authorProfile"
+                android:background="@drawable/curve_box"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                >
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:id="@id/gitImg"
+                    android:layout_marginStart="100dp"
+                    android:src="@drawable/upi"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@+id/gitImg"
+                    android:text="Donate"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingContainer"
+                android:layout_below="@+id/donate"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ratestar"
+                    android:button="@null"
+                    android:id="@+id/c1"
+                    android:layout_margin="20dp"/>
+                <CheckBox
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ratestar"
+                    android:button="@null"
+                    android:id="@+id/c2"
+                    android:layout_margin="20dp"/>
+                <CheckBox
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ratestar"
+                    android:button="@null"
+                    android:id="@+id/c3"
+                    android:layout_margin="20dp"/>
+                <CheckBox
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ratestar"
+                    android:button="@null"
+                    android:id="@+id/c4"
+                    android:layout_margin="20dp"/>
+                <CheckBox
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ratestar"
+                    android:button="@null"
+                    android:id="@+id/c5"
+                    android:layout_margin="20dp"/>
+            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingContainer"
+                android:hint="Enter you comments"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:background="@drawable/curve_box"
+                android:padding="10dp"
+                android:id="@+id/comments"/>
+
+            <RelativeLayout
+                android:id="@+id/submitRatingBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/comments"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/curve_box">
+
+                <TextView
+                    android:id="@+id/BtnText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Submit"
+                    android:textColor="@color/purple_500"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/Progressbarrating"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

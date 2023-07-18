@@ -38,6 +38,14 @@
         android:textSize="18sp"
         android:layout_below="@+id/title"
         android:id="@+id/questionNo"/>
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:id="@+id/progresstimer"
+        android:layout_marginHorizontal="20dp"
+        app:indicatorColor="#FFC107"
+        android:max="20"
+        android:layout_below="@+id/questionNo"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
