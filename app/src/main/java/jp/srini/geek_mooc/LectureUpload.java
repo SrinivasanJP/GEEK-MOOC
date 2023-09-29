@@ -1,4 +1,4 @@
-package com.example.geek_mooc;
+package jp.srini.geek_mooc;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.Srini.geek_mooc.R;;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,16 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import Backend.CreateCourseHelper;
 import Backend.LectureHelper;
 import Quiz.QuizCreate;
 import Quiz.QuizDeleteAdapter;
-import Quiz.QuizHelper;
 import Quiz.RecyclerViewQuizDeleteInterface;
-import RecyclerHelper.CourseHolder;
 import RecyclerHelper.ModifyLectureAdapter;
 import RecyclerHelper.RecyclerModifyInterface;
-import RecyclerHelper.RecyclerViewInterface;
 
 public class LectureUpload extends AppCompatActivity implements RecyclerModifyInterface, RecyclerViewQuizDeleteInterface {
     private TextView vTitle;

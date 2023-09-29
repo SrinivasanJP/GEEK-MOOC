@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -22,9 +20,9 @@ import android.widget.EditText;
 import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
-import com.example.geek_mooc.CourseCategory;
-import com.example.geek_mooc.R;
-import com.example.geek_mooc.RegisterCourse;
+import jp.srini.geek_mooc.CourseCategory;
+import com.Srini.geek_mooc.R;
+import jp.srini.geek_mooc.RegisterCourse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

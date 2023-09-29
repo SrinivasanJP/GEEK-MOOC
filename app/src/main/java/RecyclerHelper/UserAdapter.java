@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.geek_mooc.R;
+import com.Srini.geek_mooc.R;;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;

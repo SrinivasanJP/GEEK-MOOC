@@ -1,4 +1,4 @@
-package com.example.geek_mooc;
+package jp.srini.geek_mooc;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -25,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.Srini.geek_mooc.R;;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,7 +35,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import Backend.CreateCourseHelper;
@@ -133,7 +132,9 @@ public class GettingCourseDetials extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String date = simpleDateFormat.format(calendar.getTime()).toString();
                 createCourseHelper.setLastUpdate(date);
-                databaseReference = FirebaseDatabase.getInstance().getReference("Courses").child(FirebaseAuth.getInstance().getUid()).child(vTitle.getText().toString().replace(" ","_")+FirebaseAuth.getInstance().getUid().substring(0,6));
+                databaseReference = FirebaseDatabase.getInstance().getReference("Courses")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .child(vTitle.getText().toString().replace(" ","_")+FirebaseAuth.getInstance().getUid().substring(0,6));
                 databaseReference.setValue(createCourseHelper).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

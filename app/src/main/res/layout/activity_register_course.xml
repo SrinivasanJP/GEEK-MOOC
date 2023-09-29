@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterCourse"
+    tools:context="jp.srini.geek_mooc.RegisterCourse"
     android:background="#0f111a"
     android:padding="5dp">
     <androidx.media3.ui.PlayerView

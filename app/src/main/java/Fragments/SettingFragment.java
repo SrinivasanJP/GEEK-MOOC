@@ -10,14 +10,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.geek_mooc.Basic_Info;
-import com.example.geek_mooc.Login;
-import com.example.geek_mooc.R;
+import jp.srini.geek_mooc.Basic_Info;
+import jp.srini.geek_mooc.Login;
+import com.Srini.geek_mooc.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

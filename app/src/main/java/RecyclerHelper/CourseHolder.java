@@ -17,7 +17,7 @@ import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.geek_mooc.R;
+import com.Srini.geek_mooc.R;
 
 import java.util.ArrayList;
 

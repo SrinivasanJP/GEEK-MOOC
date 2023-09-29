@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Basic_Info"
+    tools:context="jp.srini.geek_mooc.Basic_Info"
     android:background="@color/background_dark">
     <TextView
         android:layout_width="wrap_content"

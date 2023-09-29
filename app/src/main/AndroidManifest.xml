@@ -13,15 +13,15 @@
         android:theme="@style/Theme.GEEKMOOC"
         tools:targetApi="31">
         <activity
-            android:name=".GetRating"
+            android:name="jp.srini.geek_mooc.GetRating"
             android:exported="false"
             android:label="@string/title_activity_get_rating"
             android:theme="@style/Theme.GEEKMOOC" />
         <activity
-            android:name=".CourseCategory"
+            android:name="jp.srini.geek_mooc.CourseCategory"
             android:exported="false" />
         <activity
-            android:name=".ShowQuizMarks"
+            android:name="jp.srini.geek_mooc.ShowQuizMarks"
             android:exported="false" />
         <activity
             android:name="Quiz.QuizStart"
@@ -30,40 +30,40 @@
             android:name="Quiz.QuizCreate"
             android:exported="false" />
         <activity
-            android:name=".ModifyCourse"
+            android:name="jp.srini.geek_mooc.ModifyCourse"
             android:exported="false" />
         <activity
-            android:name=".LectureModify"
+            android:name="jp.srini.geek_mooc.LectureModify"
             android:exported="false" />
         <activity
-            android:name=".CourseTakingPage"
+            android:name="jp.srini.geek_mooc.CourseTakingPage"
             android:exported="false" />
         <activity
-            android:name=".GettingNewLectureDetials"
+            android:name="jp.srini.geek_mooc.GettingNewLectureDetials"
             android:exported="false" />
         <activity
-            android:name=".LectureUpload"
+            android:name="jp.srini.geek_mooc.LectureUpload"
             android:exported="false" />
         <activity
-            android:name=".RegisterCourse"
+            android:name="jp.srini.geek_mooc.RegisterCourse"
             android:exported="false" />
         <activity
-            android:name=".GettingCourseDetials"
+            android:name="jp.srini.geek_mooc.GettingCourseDetials"
             android:exported="false" />
         <activity
-            android:name=".Basic_Info"
+            android:name="jp.srini.geek_mooc.Basic_Info"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name="jp.srini.geek_mooc.Home"
             android:exported="false" />
         <activity
-            android:name=".ForgetPassword"
+            android:name="jp.srini.geek_mooc.ForgetPassword"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name="jp.srini.geek_mooc.Register"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name="jp.srini.geek_mooc.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

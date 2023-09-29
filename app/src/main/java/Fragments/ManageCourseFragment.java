@@ -14,9 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.geek_mooc.LectureUpload;
-import com.example.geek_mooc.R;
-import com.example.geek_mooc.RegisterCourse;
+import jp.srini.geek_mooc.LectureUpload;
+import com.Srini.geek_mooc.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

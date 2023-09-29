@@ -1,10 +1,40 @@
 {
   "project_info": {
     "project_number": "1094138075961",
+    "firebase_url": "https://geekmooc-a61ed-default-rtdb.firebaseio.com",
     "project_id": "geekmooc-a61ed",
     "storage_bucket": "geekmooc-a61ed.appspot.com"
   },
   "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094138075961:android:85d4d7fea55893fa9666e8",
+        "android_client_info": {
+          "package_name": "com.Srini.Geek_mooc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1094138075961-36s1jbdcgjb45o1csi5gk85fgdo2j9kn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA819_yNV7B_-ILDQE9fbVfa9tnNW78Ac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1094138075961-36s1jbdcgjb45o1csi5gk85fgdo2j9kn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:1094138075961:android:8610f1a88a59332d9666e8",

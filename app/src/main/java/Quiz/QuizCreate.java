@@ -14,9 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.geek_mooc.Home;
-import com.example.geek_mooc.LectureUpload;
-import com.example.geek_mooc.R;
+import jp.srini.geek_mooc.Home;
+
+import com.Srini.geek_mooc.R;;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

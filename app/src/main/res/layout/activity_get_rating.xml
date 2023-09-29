@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".GetRating"
+    tools:context="jp.srini.geek_mooc.GetRating"
     android:background="@color/background_dark">
 
 
